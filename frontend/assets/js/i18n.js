@@ -3,8 +3,10 @@ import { store } from "./store.js";
 
 const S = {
   // brand / nav
-  brand_name: { en: "Thanaweya 2026", ar: "ثانوية 2026" },
-  brand_tag: { en: "Analytics Platform", ar: "منصة التحليلات" },
+  brand_name: { en: "AI With Omar & Tayam", ar: "AI With Omar & Tayam" },
+  brand_tag: { en: "Thanaweya 2026 Analytics", ar: "منصة تحليلات الثانوية 2026" },
+  made_by: { en: "Made by", ar: "صناعة" },
+  creators_title: { en: "Who built this", ar: "مين اللي عمل الموقع ده" },
   nav_analytics: { en: "Analytics", ar: "التحليلات" },
   nav_site: { en: "Platform", ar: "المنصّة" },
   overview: { en: "Overview", ar: "نظرة عامة" },

@@ -5,6 +5,7 @@ import { api } from "./api.js";
 import { t } from "./i18n.js";
 import { nf, nf1, compact } from "./format.js";
 import { SecHead, Card, useAsync, CountUp, Insight } from "./ui.js";
+import { CREATORS, LINKEDIN_ICON } from "./creators.js";
 
 const AR = () => store.lang === "ar";
 const go = (h) => () => { location.hash = h; };
@@ -71,6 +72,21 @@ export function Home() {
           <div class="u">${nf1(f.score_needed, 0)}/320</div></div>`)}
       </div>
     <//>`}
+
+    <${Card} title=${t("creators_title")} cls="span-full" style="margin-top:18px">
+      <div class="creators-row">
+        <img src="/assets/img/logo.png" alt="Omar &amp; Tayam" class="creators-avatar" />
+        <div style="flex:1;min-width:0">
+          <p class="muted" style="margin:0 0 12px;font-size:13.5px;line-height:1.7">${AR()
+            ? "المنصة دي اتصممت وابتُنيت بواسطة عمر وتيام."
+            : "This platform was designed and built by Omar and Tayam."}</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            ${CREATORS.map((c) => html`<a class="btn sm" href=${c.linkedin} target="_blank" rel="noopener noreferrer">
+              <span dangerouslySetInnerHTML=${{ __html: LINKEDIN_ICON }}></span>${AR() ? c.nameAr : c.name}</a>`)}
+          </div>
+        </div>
+      </div>
+    <//>
   </div>`;
 }
 

@@ -2,6 +2,7 @@
 import { html, render, useState, useEffect } from "./preact.js";
 import { store, subscribe, toggleTheme } from "./store.js";
 import { t } from "./i18n.js";
+import { CREATORS, LINKEDIN_ICON } from "./creators.js";
 import { Overview, Distribution, TopPerformers, Statistics } from "./dash_analysis.js";
 import { Predictions, Admission, Search, Quality } from "./dash_explore.js";
 import { Home, About, Methodology, FAQ } from "./site.js";
@@ -55,14 +56,24 @@ function App() {
     <div class="app">
       <aside class=${"sidebar " + (menuOpen ? "open" : "")}>
         <div class="brand">
-          <div class="brand-logo">ث</div>
+          <div class="brand-logo">
+            <img src="/assets/img/logo.png" alt="${t("brand_name")}" onError=${(e) => { e.target.style.display = "none"; e.target.nextSibling.style.display = "grid"; }} />
+            <span class="brand-logo-fallback">AI</span>
+          </div>
           <div class="brand-txt"><b>${t("brand_name")}</b><span>${t("brand_tag")}</span></div>
         </div>
         <div class="nav-group-label">${t("nav_analytics")}</div>
         ${NAV_ANALYTICS.map(navItem)}
         <div class="nav-group-label">${t("nav_site")}</div>
         ${NAV_SITE.map(navItem)}
-        <div class="sidebar-foot">${t("built_with")}<br/>© 2026 · v1.0</div>
+        <div class="sidebar-foot">
+          <div class="creator-row">
+            <span>${t("made_by")}</span>
+            ${CREATORS.map((c) => html`<a class="creator-chip" href=${c.linkedin} target="_blank" rel="noopener noreferrer" title=${c.name}>
+              <span dangerouslySetInnerHTML=${{ __html: LINKEDIN_ICON }}></span>${store.lang === "ar" ? c.nameAr : c.name}</a>`)}
+          </div>
+          <div>© 2026 · v1.0</div>
+        </div>
       </aside>
       <div class=${"scrim " + (menuOpen ? "show" : "")} onClick=${() => setMenuOpen(false)}></div>
 
