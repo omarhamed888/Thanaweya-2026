@@ -3,11 +3,13 @@
 # must never be uploaded — it holds the full 919k-student SQLite DB + raw
 # workbook caches, which is exactly the bulk student data this deployment is
 # built to keep off the public internet.
-data/
+/data/
 .claude/
 docs/
 backend/
 pipeline/
+requirements.txt
+run.ps1
 *.pkl
 *.db
 __pycache__/
