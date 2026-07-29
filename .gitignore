@@ -1,0 +1,52 @@
+# =====================================================================
+#  Thanaweya Amma 2026 Analytics — .gitignore
+# =====================================================================
+
+# --- Generated data artefacts (rebuild: python -m pipeline.build) -----
+# These are large (SQLite ~294MB, pickles >100MB) and regenerable from
+# the source workbook, so they are never committed.
+data/*.db
+data/*.pkl
+data/*.parquet
+data/*.json
+data/*.feather
+
+# --- Python -----------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.log
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# --- Environment / secrets -------------------------------------------
+.env
+.env.*
+!.env.example
+
+# --- Node (only if a JS toolchain is ever added) ---------------------
+node_modules/
+
+# --- Editors / IDEs ---------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*~
+
+# --- OS ---------------------------------------------------------------
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store

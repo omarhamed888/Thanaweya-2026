@@ -1,0 +1,143 @@
+// Bilingual UI strings. t(key) resolves against the current language.
+import { store } from "./store.js";
+
+const S = {
+  // brand / nav
+  brand_name: { en: "Thanaweya 2026", ar: "ثانوية 2026" },
+  brand_tag: { en: "Analytics Platform", ar: "منصة التحليلات" },
+  nav_analytics: { en: "Analytics", ar: "التحليلات" },
+  nav_site: { en: "Platform", ar: "المنصّة" },
+  overview: { en: "Overview", ar: "نظرة عامة" },
+  distribution: { en: "Score Distribution", ar: "توزيع الدرجات" },
+  top: { en: "Top Performers", ar: "الأوائل" },
+  stats: { en: "Statistical Analysis", ar: "التحليل الإحصائي" },
+  predictions: { en: "Predictions", ar: "التوقعات" },
+  admission: { en: "University Admission", ar: "التنسيق الجامعي" },
+  search: { en: "Student Search", ar: "البحث عن طالب" },
+  quality: { en: "Data Quality", ar: "جودة البيانات" },
+  home: { en: "Home", ar: "الرئيسية" },
+  about: { en: "About", ar: "حول" },
+  methodology: { en: "Methodology", ar: "المنهجية" },
+  faq: { en: "FAQ", ar: "الأسئلة الشائعة" },
+
+  // common
+  loading: { en: "Loading…", ar: "جارٍ التحميل…" },
+  students: { en: "students", ar: "طالب" },
+  student: { en: "Student", ar: "طالب" },
+  of: { en: "of", ar: "من" },
+  page: { en: "Page", ar: "صفحة" },
+  prev: { en: "Prev", ar: "السابق" },
+  next: { en: "Next", ar: "التالي" },
+  export_csv: { en: "Export CSV", ar: "تصدير CSV" },
+  export_excel: { en: "Export Excel", ar: "تصدير Excel" },
+  export_pdf: { en: "Print / PDF", ar: "طباعة / PDF" },
+  all: { en: "All", ar: "الكل" },
+  rank: { en: "Rank", ar: "الترتيب" },
+  seat: { en: "Seat No.", ar: "رقم الجلوس" },
+  name: { en: "Name", ar: "الاسم" },
+  score: { en: "Score", ar: "الدرجة" },
+  percentage: { en: "Percentage", ar: "النسبة" },
+  percentile: { en: "Percentile", ar: "المئيني" },
+  status: { en: "Status", ar: "الحالة" },
+  category: { en: "Category", ar: "الفئة" },
+  perf_index: { en: "Perf. Index", ar: "مؤشر الأداء" },
+  results: { en: "results", ar: "نتيجة" },
+  no_results: { en: "No results found", ar: "لا توجد نتائج" },
+
+  // KPIs
+  total_students: { en: "Total Students", ar: "إجمالي الطلاب" },
+  exam_sitters: { en: "Exam Sitters", ar: "المؤدّون للامتحان" },
+  pass_rate: { en: "Pass Rate (R1)", ar: "نسبة النجاح (دور أول)" },
+  mean_pct: { en: "Average %", ar: "متوسط النسبة" },
+  median_pct: { en: "Median %", ar: "وسيط النسبة" },
+  top_score: { en: "Highest Score", ar: "أعلى درجة" },
+  perfect_scores: { en: "Perfect Scores", ar: "الدرجات الكاملة" },
+  above_90: { en: "Scored 90%+", ar: "حصلوا على 90%+" },
+  std_dev: { en: "Std. Deviation", ar: "الانحراف المعياري" },
+  out_of_320: { en: "out of 320", ar: "من 320" },
+
+  // sections
+  ov_title: { en: "National Results Overview", ar: "نظرة عامة على النتائج القومية" },
+  ov_sub: { en: "A high-level snapshot of the Egyptian Thanaweya Amma 2026 (new system) results across every student.", ar: "لمحة شاملة عن نتائج الثانوية العامة المصرية 2026 (النظام الحديث) لجميع الطلاب." },
+  ai_insights: { en: "AI-Generated Insights", ar: "رؤى تلقائية" },
+  status_split: { en: "Student Status Breakdown", ar: "توزيع حالات الطلاب" },
+  grade_bands: { en: "Grade Bands", ar: "الفئات التقديرية" },
+  students_above: { en: "Students Above Each Threshold", ar: "عدد الطلاب فوق كل حد" },
+
+  dist_title: { en: "Score Distribution", ar: "توزيع الدرجات" },
+  dist_sub: { en: "How marks spread across the exam-sitting cohort — histogram, density, box, violin and cumulative views.", ar: "كيفية توزّع الدرجات بين الطلاب المؤدّين — مدرّج تكراري وكثافة وصندوق وكمان وتوزيع تراكمي." },
+  histogram: { en: "Histogram (Percentage)", ar: "المدرّج التكراري (النسبة)" },
+  density: { en: "Density Curve", ar: "منحنى الكثافة" },
+  boxplot: { en: "Box Plot", ar: "مخطط الصندوق" },
+  violin: { en: "Violin by Status", ar: "مخطط الكمان حسب الحالة" },
+  cdf: { en: "Cumulative Distribution (CDF)", ar: "التوزيع التراكمي" },
+  freq_table: { en: "Score Frequency Table", ar: "جدول تكرار الدرجات" },
+
+  top_title: { en: "Top Performers", ar: "الطلاب الأوائل" },
+  top_sub: { en: "The highest-ranked students nationwide, with medal standings and elite-tier breakdowns.", ar: "أعلى الطلاب ترتيبًا على مستوى الجمهورية، مع المراكز والفئات المتميزة." },
+  leaderboard: { en: "National Leaderboard", ar: "لوحة الصدارة القومية" },
+
+  stat_title: { en: "Statistical Analysis", ar: "التحليل الإحصائي" },
+  stat_sub: { en: "Descriptive statistics, shape, percentiles, normality testing and score clustering.", ar: "إحصاءات وصفية وشكل التوزيع والمئينيات واختبارات الحالة الطبيعية وتجميع الدرجات." },
+  moments: { en: "Descriptive Statistics", ar: "الإحصاءات الوصفية" },
+  percentiles: { en: "Percentiles", ar: "المئينيات" },
+  normality: { en: "Normality Tests", ar: "اختبارات الحالة الطبيعية" },
+  clusters: { en: "Score Clusters (K-Means)", ar: "تجميعات الدرجات (K-Means)" },
+  pareto: { en: "Pareto of Grade Bands", ar: "باريتو للفئات" },
+  heatmap: { en: "Band × Status Heatmap", ar: "خريطة حرارية للفئة والحالة" },
+
+  pred_title: { en: "Admission Predictions", ar: "توقعات القبول" },
+  pred_sub: { en: "Statistically estimated 2026 faculty cutoffs, grounded in this year's distribution and historical trends.", ar: "تقدير إحصائي لحدود القبول بالكليات لعام 2026، مبني على توزيع هذا العام والاتجاهات التاريخية." },
+  admission_title: { en: "University Admission Explorer", ar: "مستكشف التنسيق الجامعي" },
+  admission_sub: { en: "Compare estimated cutoffs, scenarios and eligibility for major faculties.", ar: "قارن الحدود المتوقعة والسيناريوهات والأهلية لأهم الكليات." },
+  expected_cutoff: { en: "Expected Cutoff", ar: "الحد المتوقع" },
+  optimistic: { en: "Optimistic", ar: "متفائل" },
+  expected: { en: "Expected", ar: "متوقع" },
+  pessimistic: { en: "Pessimistic", ar: "متشائم" },
+  eligible: { en: "eligible", ar: "مؤهل" },
+  assumptions: { en: "Assumptions & Limitations", ar: "الافتراضات والقيود" },
+  score_needed: { en: "Score needed", ar: "الدرجة المطلوبة" },
+  vs_last_year: { en: "vs 2025", ar: "مقارنة بـ2025" },
+  ci95: { en: "95% Confidence", ar: "ثقة 95%" },
+  scenario: { en: "Scenario", ar: "السيناريو" },
+  check_eligibility: { en: "Check My Eligibility", ar: "تحقق من أهليتي" },
+  enter_pct: { en: "Enter your percentage", ar: "أدخل نسبتك المئوية" },
+  you_qualify: { en: "Faculties you may qualify for (Expected scenario)", ar: "الكليات المتوقّع أهليتك لها (السيناريو المتوقع)" },
+
+  search_title: { en: "Find a Student", ar: "ابحث عن طالب" },
+  search_sub: { en: "Search by seat number or name across all 919,396 students.", ar: "ابحث برقم الجلوس أو الاسم بين جميع الطلاب البالغ عددهم 919,396." },
+  search_ph: { en: "Seat number or student name…", ar: "رقم الجلوس أو اسم الطالب…" },
+  search_btn: { en: "Search", ar: "بحث" },
+  by_auto: { en: "Auto", ar: "تلقائي" },
+  by_seat: { en: "By Seat", ar: "برقم الجلوس" },
+  by_name: { en: "By Name", ar: "بالاسم" },
+  national_rank: { en: "National Rank", ar: "الترتيب القومي" },
+  better_than: { en: "Ahead of", ar: "يتفوق على" },
+  view_profile: { en: "View", ar: "عرض" },
+  nearby: { en: "Students near this rank", ar: "طلاب قريبون في الترتيب" },
+
+  q_title: { en: "Data Quality Report", ar: "تقرير جودة البيانات" },
+  q_sub: { en: "Full transparency on cleaning, validation, completeness, duplicates and outliers.", ar: "شفافية كاملة حول التنظيف والتحقق والاكتمال والتكرارات والقيم الشاذة." },
+  quality_score: { en: "Overall Quality Score", ar: "درجة الجودة الإجمالية" },
+  completeness: { en: "Completeness", ar: "الاكتمال" },
+  validity: { en: "Validity", ar: "الصحة" },
+  uniqueness: { en: "Uniqueness", ar: "التفرّد" },
+  col_profile: { en: "Column Profiles", ar: "ملفات الأعمدة" },
+  duplicates: { en: "Duplicates", ar: "التكرارات" },
+  outliers: { en: "Outliers", ar: "القيم الشاذة" },
+  invalid_rows: { en: "Flagged Rows", ar: "الصفوف المُعلَّمة" },
+  missing: { en: "Missing", ar: "مفقود" },
+  unique: { en: "Unique", ar: "فريد" },
+
+  // status labels resolved dynamically too
+  view_all: { en: "View all", ar: "عرض الكل" },
+  updated: { en: "Data as released • New system", ar: "بيانات رسمية • النظام الحديث" },
+  built_with: { en: "Built with FastAPI · SQLite · Preact · Plotly", ar: "مبني بـ FastAPI · SQLite · Preact · Plotly" },
+};
+
+export function t(key) {
+  const e = S[key];
+  if (!e) return key;
+  return e[store.lang] ?? e.en;
+}
+export function tt(enAr) { return enAr[store.lang] ?? enAr.en; }
