@@ -1,6 +1,6 @@
 // Application shell: sidebar nav, top bar, hash router, theme/lang toggles.
 import { html, render, useState, useEffect } from "./preact.js";
-import { store, subscribe, toggleTheme, toggleLang } from "./store.js";
+import { store, subscribe, toggleTheme } from "./store.js";
 import { t } from "./i18n.js";
 import { Overview, Distribution, TopPerformers, Statistics } from "./dash_analysis.js";
 import { Predictions, Admission, Search, Quality } from "./dash_explore.js";
@@ -74,7 +74,6 @@ function App() {
             <div class="page-sub">${t("brand_name")} · ${t("brand_tag")}</div>
           </div>
           <div class="spacer"></div>
-          <button class="iconbtn" title="Language" onClick=${toggleLang}>${store.lang === "ar" ? "EN" : "ع"}</button>
           <button class="iconbtn" title="Theme" onClick=${toggleTheme}>${store.theme === "dark" ? "☀️" : "🌙"}</button>
         </header>
         <main class="content"><${Page} key=${path + store.lang} /></main>

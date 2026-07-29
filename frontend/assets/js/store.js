@@ -7,14 +7,10 @@ function readTheme() {
   return window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches
     ? "light" : "dark";
 }
-function readLang() {
-  const saved = localStorage.getItem("ta-lang");
-  return saved === "en" || saved === "ar" ? saved : "ar";
-}
-
+// Arabic-only build: language is fixed, no toggle, no stored preference.
 export const store = {
   theme: readTheme(),
-  lang: readLang(),
+  lang: "ar",
   cache: {},          // API response cache
 };
 
@@ -30,7 +26,5 @@ function emit() { apply(); listeners.forEach((f) => f()); }
 
 export function setTheme(t) { store.theme = t; localStorage.setItem("ta-theme", t); emit(); }
 export function toggleTheme() { setTheme(store.theme === "dark" ? "light" : "dark"); }
-export function setLang(l) { store.lang = l; localStorage.setItem("ta-lang", l); emit(); }
-export function toggleLang() { setLang(store.lang === "ar" ? "en" : "ar"); }
 
 apply(); // initial
