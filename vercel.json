@@ -1,0 +1,10 @@
+{
+  "outputDirectory": "frontend",
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/api/analytics", "destination": "/data/analytics.json" },
+    { "source": "/api/predictions", "destination": "/data/predictions.json" },
+    { "source": "/api/quality", "destination": "/data/data_quality_report.json" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

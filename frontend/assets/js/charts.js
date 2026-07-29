@@ -71,6 +71,6 @@ export function Chart({ data, layout, config, className, style }) {
     if (!ref.current || !Plotly) return;
     Plotly.react(ref.current, data, layout, Object.assign({}, chartConfig, config || {}));
     return () => { try { Plotly.purge(ref.current); } catch (_) {} };
-  }, [JSON.stringify(data).length, JSON.stringify(layout || {}).length, store.theme, store.lang, data, layout]);
+  }, [data, layout, store.theme, store.lang]);
   return h("div", { ref, className: "chart " + (className || ""), style });
 }

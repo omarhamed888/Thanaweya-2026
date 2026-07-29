@@ -229,7 +229,7 @@ export function Search() {
     if (!query || query.trim().length < 1) { setRes(null); return; }
     setLoading(true);
     try { const r = await api.search(query.trim(), mode, pg, 25); setRes(r); }
-    catch (e) { setRes({ error: e.message, rows: [] }); }
+    catch (e) { setRes({ unavailable: true, rows: [] }); }
     setLoading(false);
   }
   function onInput(v) {
@@ -241,7 +241,7 @@ export function Search() {
 
   async function openProfile(seat) {
     try { const s = await api.student(seat); setProfile(s); window.scrollTo({ top: 0, behavior: "smooth" }); }
-    catch (e) { setProfile({ error: e.message }); }
+    catch (e) { setProfile({ unavailable: true }); window.scrollTo({ top: 0, behavior: "smooth" }); }
   }
 
   const cols = [
@@ -274,8 +274,8 @@ export function Search() {
       </div>
     </div>
 
-    ${res && res.error && html`<${ErrorBox} error=${res.error} />`}
-    ${res && !res.error && html`<${Card} title=${t("results")} desc=${`${nf(res.total)} ${t("results")} · ${res.mode}`}>
+    ${res && res.unavailable && html`<${SearchUnavailable} />`}
+    ${res && !res.unavailable && html`<${Card} title=${t("results")} desc=${`${nf(res.total)} ${t("results")} · ${res.mode}`}>
       <${DataTable} columns=${cols} rows=${res.rows} loading=${loading} exportName="thanaweya-2026-search" />
       ${res.pages > 1 && html`<${Pager} page=${res.page} pages=${res.pages} total=${res.total} onPage=${goPage} />`}
     <//>`}
@@ -283,8 +283,18 @@ export function Search() {
   </div>`;
 }
 
+function SearchUnavailable() {
+  return html`<div class="card" style="border-color:var(--warn)">
+    <div class="card-title">🔒 ${store.lang === "ar" ? "البحث غير متاح في هذه النسخة" : "Search unavailable in this deployment"}</div>
+    <p class="muted" style="margin:8px 0 0;line-height:1.7">${store.lang === "ar"
+      ? "هذه نسخة عرض تنشر التحليلات والتوقعات المجمّعة فقط، لحماية خصوصية الطلاب — بدون بحث أو تصدير لبيانات الطلاب الفردية. لتجربة البحث الكامل عن 919,396 طالب، شغّل المشروع محليًا (راجع README)."
+      : "This deployment only publishes aggregate analytics and predictions, to protect student privacy — it doesn't include search or export over individual student records. Run the project locally (see the README) for full search over all 919,396 students."}</p>
+  </div>`;
+}
+
 function StudentProfile({ s, onClose }) {
   const c = colors();
+  if (s.unavailable) return html`<${SearchUnavailable} />`;
   if (s.error) return html`<${ErrorBox} error=${s.error} />`;
   const perc = s.percentile || 0;
   const gauge = [{

@@ -11,6 +11,7 @@ param(
 )
 $ErrorActionPreference = "Stop"
 Set-Location -Path $PSScriptRoot
+$env:PYTHONUTF8 = "1"  # Arabic console output (workbook path, status labels) needs UTF-8, not cp1252
 
 $db = Join-Path $PSScriptRoot "data\students.db"
 

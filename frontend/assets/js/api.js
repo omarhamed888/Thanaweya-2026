@@ -18,7 +18,11 @@ function cached(key, fn) {
 
 export const api = {
   health: () => get("/api/health"),
-  meta: () => cached("meta", () => get("/api/meta")),
+  // Derived from /api/analytics (which already carries meta/cohort/predictions_summary)
+  // rather than a dedicated endpoint, so this also works on static deployments
+  // that only publish the precomputed JSON (no SQLite backend).
+  meta: () => cached("analytics", () => get("/api/analytics"))
+    .then((a) => ({ meta: a.meta, cohort: a.cohort, predictions_summary: a.predictions_summary })),
   analytics: () => cached("analytics", () => get("/api/analytics")),
   quality: () => cached("quality", () => get("/api/quality")),
   predictions: () => cached("predictions", () => get("/api/predictions")),

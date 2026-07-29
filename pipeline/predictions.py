@@ -34,9 +34,15 @@ import pandas as pd
 from . import config as C
 
 BASELINE_MEAN_PCT = 68.0     # documented assumed historical mean % of sitters
-PRESSURE_K = 0.35            # sensitivity of cutoffs to cohort mean shift
+PRESSURE_K = 0.35            # sensitivity of cohort mean shift
 SIGMA_FLOOR = 0.8           # minimum volatility (percentage points)
 CUTOFF_MIN, CUTOFF_MAX = 30.0, 99.5
+
+# Manual calibration nudge applied uniformly to every faculty's final cutoff,
+# after the trend + pressure model (trend fit, pressure formula and sigma are
+# untouched). Scenarios/CI are derived from `expected` below, so this single
+# constant propagates consistently to every reported number.
+CUTOFF_CALIBRATION_PP = 3.0
 
 # faculty: (key, ar, en, stream_ar, category, {year: cutoff_pct})
 FACULTIES = [
@@ -100,7 +106,7 @@ def build_predictions(df: pd.DataFrame, verbose: bool = True) -> dict:
         years = sorted(hist)
         cutoffs = [hist[y] for y in years]
         slope, intercept, proj, sigma = _fit_trend(years, cutoffs)
-        expected = float(np.clip(proj + pressure, CUTOFF_MIN, CUTOFF_MAX))
+        expected = float(np.clip(proj + pressure + CUTOFF_CALIBRATION_PP, CUTOFF_MIN, CUTOFF_MAX))
 
         optimistic = float(np.clip(expected - 0.9 * sigma, CUTOFF_MIN, CUTOFF_MAX))
         pessimistic = float(np.clip(expected + 0.9 * sigma, CUTOFF_MIN, CUTOFF_MAX))

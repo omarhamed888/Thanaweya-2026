@@ -7,11 +7,13 @@
   <title>Thanaweya Amma 2026 · Analytics</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>" />
   <link rel="stylesheet" href="/assets/css/styles.css" />
-  <!-- Vendored libraries (offline, no CDN) -->
-  <script src="/assets/vendor/preact.umd.js"></script>
-  <script src="/assets/vendor/hooks.umd.js"></script>
-  <script src="/assets/vendor/htm.umd.js"></script>
-  <script src="/assets/vendor/plotly.min.js"></script>
+  <!-- Vendored libraries (offline, no CDN). Deferred so the ~4.5 MB Plotly
+       bundle can't block the initial paint; defer preserves document order,
+       so these still run before the type=module app script. -->
+  <script defer src="/assets/vendor/preact.umd.js"></script>
+  <script defer src="/assets/vendor/hooks.umd.js"></script>
+  <script defer src="/assets/vendor/htm.umd.js"></script>
+  <script defer src="/assets/vendor/plotly.min.js"></script>
 </head>
 <body>
   <div id="app">
