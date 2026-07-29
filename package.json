@@ -1,0 +1,8 @@
+{
+  "name": "thanaweya-2026-search-api",
+  "private": true,
+  "description": "Vercel serverless functions (api/) for the analytics-only deployment's student search, backed by Neon Postgres.",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4"
+  }
+}
