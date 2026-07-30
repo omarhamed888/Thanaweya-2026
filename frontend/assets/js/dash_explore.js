@@ -104,10 +104,10 @@ export function Predictions() {
             </div>
           </div>
           <div class="divider" style="margin:14px 0 10px"></div>
-          <div style="display:flex;gap:8px;font-size:11.5px">
-            <div style="flex:1" class="stat-tile"><div class="t" style="color:var(--good)">${t("optimistic")}</div><div class="v" style="font-size:16px">${nf1(o.cutoff,1)}%</div><div class="u">${compact(o.eligible_students)} ${t("eligible")}</div></div>
-            <div style="flex:1" class="stat-tile"><div class="t" style="color:var(--accent)">${t("expected")}</div><div class="v" style="font-size:16px">${nf1(e.cutoff,1)}%</div><div class="u">${compact(e.eligible_students)} ${t("eligible")}</div></div>
-            <div style="flex:1" class="stat-tile"><div class="t" style="color:var(--critical)">${t("pessimistic")}</div><div class="v" style="font-size:16px">${nf1(pe.cutoff,1)}%</div><div class="u">${compact(pe.eligible_students)} ${t("eligible")}</div></div>
+          <div class="scenario-row">
+            <div class="stat-tile"><div class="t" style="color:var(--good)">${t("optimistic")}</div><div class="v" style="font-size:16px">${nf1(o.cutoff,1)}%</div><div class="u">${compact(o.eligible_students)} ${t("eligible")}</div></div>
+            <div class="stat-tile"><div class="t" style="color:var(--accent)">${t("expected")}</div><div class="v" style="font-size:16px">${nf1(e.cutoff,1)}%</div><div class="u">${compact(e.eligible_students)} ${t("eligible")}</div></div>
+            <div class="stat-tile"><div class="t" style="color:var(--critical)">${t("pessimistic")}</div><div class="v" style="font-size:16px">${nf1(pe.cutoff,1)}%</div><div class="u">${compact(pe.eligible_students)} ${t("eligible")}</div></div>
           </div>
         </div>`;
       })}

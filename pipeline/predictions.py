@@ -42,7 +42,8 @@ CUTOFF_MIN, CUTOFF_MAX = 30.0, 99.5
 # after the trend + pressure model (trend fit, pressure formula and sigma are
 # untouched). Scenarios/CI are derived from `expected` below, so this single
 # constant propagates consistently to every reported number.
-CUTOFF_CALIBRATION_PP = 3.0
+# (+3.0pp then another +3.0pp on top, per explicit user request — +6.0pp total.)
+CUTOFF_CALIBRATION_PP = 6.0
 
 # faculty: (key, ar, en, stream_ar, category, {year: cutoff_pct})
 FACULTIES = [

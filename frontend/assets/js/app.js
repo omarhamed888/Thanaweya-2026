@@ -30,10 +30,26 @@ function currentPath() {
   return ROUTES[h] ? h : "/";
 }
 
+function WelcomeModal({ onClose }) {
+  return html`<div class="modal-scrim" onClick=${onClose}>
+    <div class="modal-card" onClick=${(e) => e.stopPropagation()}>
+      <button class="iconbtn modal-close" onClick=${onClose}>✕</button>
+      <img src="/assets/img/logo.png" alt=${t("brand_name")} class="modal-logo" />
+      <div class="modal-title">${t("brand_name")}</div>
+      <div class="modal-sub">${t("brand_tag")}</div>
+      <div class="modal-links">
+        ${CREATORS.map((c) => html`<a class="btn sm" href=${c.linkedin} target="_blank" rel="noopener noreferrer">
+          <span dangerouslySetInnerHTML=${{ __html: LINKEDIN_ICON }}></span>${store.lang === "ar" ? c.nameAr : c.name}</a>`)}
+      </div>
+    </div>
+  </div>`;
+}
+
 function App() {
   const [path, setPath] = useState(currentPath());
   const [, force] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(() => !sessionStorage.getItem("ta-welcome-seen"));
 
   useEffect(() => {
     const onHash = () => { setPath(currentPath()); setMenuOpen(false); window.scrollTo(0, 0); };
@@ -41,6 +57,8 @@ function App() {
     const unsub = subscribe(() => force((n) => n + 1)); // re-render on theme/lang
     return () => { window.removeEventListener("hashchange", onHash); unsub(); };
   }, []);
+
+  function closeWelcome() { sessionStorage.setItem("ta-welcome-seen", "1"); setShowWelcome(false); }
 
   const route = ROUTES[path];
   const Page = route.comp;
@@ -52,6 +70,7 @@ function App() {
   };
 
   return html`
+    ${showWelcome && html`<${WelcomeModal} onClose=${closeWelcome} />`}
     <div class="aurora"></div>
     <div class="app">
       <aside class=${"sidebar " + (menuOpen ? "open" : "")}>

@@ -90,10 +90,10 @@ export function DataTable({ columns, rows, sort, order, onSort, loading, exportN
           </tr></thead>
           <tbody>
             ${loading
-              ? Array.from({ length: 8 }).map(() => html`<tr>${columns.map(() => html`<td><div class="sk" style="height:16px"></div></td>`)}</tr>`)
+              ? Array.from({ length: 8 }).map(() => html`<tr>${columns.map((c) => html`<td data-label=${c.label}><div class="sk" style="height:16px"></div></td>`)}</tr>`)
               : (rows.length === 0
                   ? html`<tr><td colspan=${columns.length} class="center muted" style="padding:34px">${emptyText || t("no_results")}</td></tr>`
-                  : rows.map((r) => html`<tr>${columns.map((c) => html`<td>${c.render ? c.render(r) : r[c.key]}</td>`)}</tr>`))}
+                  : rows.map((r) => html`<tr>${columns.map((c) => html`<td data-label=${c.label}>${c.render ? c.render(r) : r[c.key]}</td>`)}</tr>`))}
           </tbody>
         </table>
       </div>
