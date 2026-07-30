@@ -112,7 +112,6 @@ body {
    Layout shell
    ========================================================================= */
 .app { display:grid; grid-template-columns:264px 1fr; min-height:100vh; }
-[dir="rtl"] .app { grid-template-columns:264px 1fr; }
 
 .sidebar {
   position:sticky; top:0; height:100vh; padding:20px 16px;
